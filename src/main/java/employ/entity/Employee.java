@@ -31,6 +31,10 @@ public class Employee {
 	
 	private String fname;
 	private String lname;
+	private char gender;
+	private int age;
+	private String address;
+	private String emp_email;
 	private String designation;
 	
 
@@ -39,47 +43,47 @@ public class Employee {
 	private Department department;
 	//This will create one extra column of Department id in the employee table
 	
-
-	public String getFname() {
-		return fname;
-	}
-
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
-	public String getLname() {
-		return lname;
-	}
-
-	public void setLname(String lname) {
-		this.lname = lname;
-	}
-
-	public String getDesignation() {
-		return designation;
-	}
-
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	
-	public int getId() {
-		return id;
-	}
+//
+//	public String getFname() {
+//		return fname;
+//	}
+//
+//	public Department getDepartment() {
+//		return department;
+//	}
+//
+//	public void setDepartment(Department department) {
+//		this.department = department;
+//	}
+//
+//	public void setFname(String fname) {
+//		this.fname = fname;
+//	}
+//
+//	public String getLname() {
+//		return lname;
+//	}
+//
+//	public void setLname(String lname) {
+//		this.lname = lname;
+//	}
+//
+//	public String getDesignation() {
+//		return designation;
+//	}
+//
+//	public void setDesignation(String designation) {
+//		this.designation = designation;
+//	}
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
+//
+//
+//	public int getId() {
+//		return id;
+//	}
 	
 	
 }

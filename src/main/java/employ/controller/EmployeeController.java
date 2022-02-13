@@ -20,29 +20,29 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService service;
 //
-	@PostMapping("/addemployee")
+	@PostMapping("/api/employees")  // /api/employees
 	public String addEmployee(@RequestBody Employee employee) {
 		 String msg=service.saveEmployee(employee);
 		 return msg;
 	}
 	
-	@GetMapping("/employees")
+	@GetMapping("/api/employees")     //   /api/employees
 	public List<Employee> findAllEmployees(){
 		return service.getEmployees();
 	}
 	
 	
-	@GetMapping("/employee/{id}")
+	@GetMapping("/api/employees/{id}")    //  /api/employees/{id}
 	public Employee findEmployeeById(@PathVariable int id) {
 		return service.getEmployeeById(id);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping(" /api/employees")       //   /api/employees
 	public Employee UpdateEmployee(@RequestBody Employee employee) {
 		return service.updateEmployee(employee);
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/api/employees/{id}")    //   /api/employees/{id}
 	public String DeleteEmployee(@PathVariable int id) {
 		return service.deleteEmployeeById(id);
 	}

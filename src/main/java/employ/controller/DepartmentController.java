@@ -15,25 +15,30 @@ public class DepartmentController {
 	@Autowired
 	public DepartmentService departmentService;
 
-	@PostMapping("/adddepartment")
+	@PostMapping("/api/departments")      //  /api/departments
 	public Department addDepartment(@RequestBody Department department) {
 		
 		return departmentService.addDepartment(department);
 	}
 
-	@GetMapping("/departments")
+	@GetMapping("/api/departments")        //  /api/departments
 	public List<Department> getDepartments(){
 		return departmentService.getDepartments();
 	}
 
-	@GetMapping("/department/{id}")
+	@GetMapping("/api/departments/{id}")    //  /api/departments/{id}
 	public Optional<Department> getDepartment(@PathVariable int id){
 		return departmentService.getDepartment(id);
 	}
 
-	@PutMapping("/department")
+	@PutMapping(" /api/departments")        //    /api/departments
 	public Department updateDepartment(@RequestBody Department department){
 		return departmentService.updateDepartment(department);
+	}
+
+	@DeleteMapping("/api/departments/{id}")
+	public String deleteDepartment(@PathVariable int id){
+		return departmentService.deleteDepartment(id);
 	}
 
 

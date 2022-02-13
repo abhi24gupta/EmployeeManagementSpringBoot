@@ -32,13 +32,23 @@ public class DepartmentService {
 	}
 
 	public Department updateDepartment(Department department) {
-		Department existingDepartment = departmentRepository.findById(department.getDepId()).orElse(null);
-		existingDepartment.setDepId(department.getDepId());
-		existingDepartment.setDepName(department.getDepName());
-		return departmentRepository.save(existingDepartment);
+//		Department existingDepartment = departmentRepository.findById(department.getDepId()).orElse(null);
+//		existingDepartment.setDepId(department.getDepId());
+//		existingDepartment.setDepName(department.getDepName());
+		return departmentRepository.save(department);
 	}
 
 	public DepartmentService(DepartmentRepository departmentRepository) {
 		this.departmentRepository = departmentRepository;
+	}
+
+	public String deleteDepartment(int id) {
+		if(departmentRepository.existsById(id)){
+			this.departmentRepository.deleteById(id);
+			return "Department Data Deleted With DepartmentID " + id;
+		}
+		else {
+			return "NO Department Found With DepartmentID " + id;
+		}
 	}
 }

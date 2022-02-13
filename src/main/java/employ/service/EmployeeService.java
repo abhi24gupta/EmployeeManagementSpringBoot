@@ -35,15 +35,21 @@ public class EmployeeService {
 	}
 	
 	public String deleteEmployeeById(int id) {
-		repository.deleteById(id);
-		return "Employee Deleted By ID:" + id;
+		if(repository.existsById(id)){
+			repository.deleteById(id);
+			return "Employee Data Deleted With EmployeeID " + id;
+		}
+		else{
+			return "NO Employee Found With EmployeeID " + id;
+
+		}
 	}
 	// save & merge
 	public Employee  updateEmployee(Employee employee) {
 		Employee existingEmployee = repository.findById(employee.getId()).orElse(null);
-		existingEmployee.setFname(employee.getFname());
-		existingEmployee.setLname(employee.getLname());
-		existingEmployee.setDesignation(employee.getDesignation());
+//		existingEmployee.setFname(employee.getFname());
+//		existingEmployee.setLname(employee.getLname());
+//		existingEmployee.setDesignation(employee.getDesignation());
 		return repository.save(existingEmployee);
 	}
 
