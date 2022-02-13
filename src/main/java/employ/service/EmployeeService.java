@@ -15,8 +15,14 @@ public class EmployeeService {
 	private EmployeeRepository repository;
 
 	
-	public Employee saveEmployee(Employee employee) {
-		return repository.save(employee);
+	public String saveEmployee(Employee employee) {
+		if(repository.existsById(employee.getId())){
+			return "Employee Already Exists";
+		}
+		else {
+			repository.save(employee);
+			return "Employee Added Successfully";
+		}
 	}
 	
 
@@ -25,7 +31,6 @@ public class EmployeeService {
 	}
 	
 	public Employee getEmployeeById(int id) {
-
 		return repository.findById(id).orElse(null);
 	}
 	
