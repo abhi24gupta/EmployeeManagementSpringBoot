@@ -2,13 +2,7 @@ package employ.entity;
 
 import java.util.Optional;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,7 +35,10 @@ public class Employee {
 	@Autowired
 	@ManyToOne
 	private Department department;
-	//This will create one extra column of Department id in the employee table
+
+
+
+
 	
 //
 //	public String getFname() {
