@@ -19,7 +19,7 @@ public class SalaryController {
 
     @GetMapping("/api/salary")
     public List<Salary> findAllSalary(@RequestBody Salary salary){
-        return salaryService.findAllSalary(salary);
+        return salaryService.findAllSalary();
     }
 
     @PostMapping("/api/salary")

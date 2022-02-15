@@ -3,10 +3,7 @@ package employ.controller;
 import employ.entity.Leave;
 import employ.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class LeaveController {
     public List<Leave> getLeaves(){
         return leaveService.getLeaves();
     }
+
+//    @DeleteMapping("/api/leaves/{id}")
+//    public String deleteLeaves(@PathVariable int id){
+//        return leaveService.deleteLeaves(id);
+//    }
 
 }

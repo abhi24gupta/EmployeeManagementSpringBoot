@@ -13,7 +13,7 @@ public class SalaryService {
     @Autowired
     public SalaryRepository salaryRepository;
 
-    public List<Salary> findAllSalary(Salary salary) {
+    public List<Salary> findAllSalary() {
         return salaryRepository.findAll();
     }
 
@@ -21,5 +21,9 @@ public class SalaryService {
     public String addSalary(Salary salary) {
         salaryRepository.save(salary);
         return "DATA of the Salary added";
+    }
+
+    public SalaryService(SalaryRepository salaryRepository) {
+        this.salaryRepository = salaryRepository;
     }
 }
