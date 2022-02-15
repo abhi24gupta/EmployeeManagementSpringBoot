@@ -59,15 +59,19 @@ public class EmployeeService {
 
 		}
 	}
-	// save & merge
 
 	// CachePut is used to have the reflected changes also on the Caching when some data is updated in DB.
 	@CachePut(key="#id",value="empkey")
 	public Employee  updateEmployee(Employee employee) {
 		Employee existingEmployee = repository.findById(employee.getId()).orElse(null);
-//		existingEmployee.setFname(employee.getFname());
-//		existingEmployee.setLname(employee.getLname());
-//		existingEmployee.setDesignation(employee.getDesignation());
+		existingEmployee.setFname(employee.getFname());
+		existingEmployee.setLname(employee.getLname());
+		existingEmployee.setGender(employee.getGender());
+		existingEmployee.setAge(employee.getAge());
+		existingEmployee.setAddress(employee.getAddress());
+		existingEmployee.setEmp_email(employee.getEmp_email());
+		existingEmployee.setDesignation(employee.getDesignation());
+		existingEmployee.setDepartment(employee.getDepartment());
 		return repository.save(existingEmployee);
 	}
 

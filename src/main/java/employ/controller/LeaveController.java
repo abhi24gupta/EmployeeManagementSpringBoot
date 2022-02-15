@@ -23,9 +23,19 @@ public class LeaveController {
         return leaveService.getLeaves();
     }
 
-//    @DeleteMapping("/api/leaves/{id}")
-//    public String deleteLeaves(@PathVariable int id){
-//        return leaveService.deleteLeaves(id);
-//    }
+    @GetMapping("/api/leaves/{id}")
+    public Leave getLeaveById(@PathVariable int id){
+        return leaveService.getLeaveById(id);
+    }
+
+    @DeleteMapping("/api/leaves/{id}")
+    public String deleteLeaves(@PathVariable int id){
+        return leaveService.deleteLeaves(id);
+    }
+
+    @PutMapping("/api/leaves")
+    public Leave updateLeaves(@RequestBody Leave leave){
+        return leaveService.updateLeaves(leave);
+    }
 
 }
