@@ -6,6 +6,10 @@ import java.util.Optional;
 
 import employ.exception.NoSuchIdFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,7 @@ import employ.entity.Employee;
 import employ.repository.EmployeeRepository;
 
 @Service
+@EnableCaching
 public class EmployeeService {
 	
 	@Autowired
@@ -28,7 +33,9 @@ public class EmployeeService {
 	public List<Employee> getEmployees() {
 		return repository.findAll();
 	}
-	
+
+//	, unless = "#result.age > 23"    // Condition in Caching
+	@Cacheable(key="#id",value="empkey")
 	public Employee getEmployeeById(int id) {
 //		try{
 //			return repository.findById(id).get();
@@ -36,9 +43,12 @@ public class EmployeeService {
 //		catch(Exception e){
 //			throw new RuntimeException("asdfadfasdf", HttpStatus.NOT_FOUND);
 //		}
+//		To Test whether the function getEmployeeById is going to the dao layer for the second time when the same api call is made
+		System.out.println("Going to DAO layer");
 		return repository.findById(id).get();
 	}
-	
+	// CacheEvict is used to have the reflected changes also on the Caching when some data is deleted from DB.
+	@CacheEvict(key="#id",value="empkey")
 	public String deleteEmployeeById(int id) {
 		if(repository.existsById(id)){
 			repository.deleteById(id);
@@ -50,6 +60,9 @@ public class EmployeeService {
 		}
 	}
 	// save & merge
+
+	// CachePut is used to have the reflected changes also on the Caching when some data is updated in DB.
+	@CachePut(key="#id",value="empkey")
 	public Employee  updateEmployee(Employee employee) {
 		Employee existingEmployee = repository.findById(employee.getId()).orElse(null);
 //		existingEmployee.setFname(employee.getFname());
