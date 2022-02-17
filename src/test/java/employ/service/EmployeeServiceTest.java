@@ -53,9 +53,9 @@ class EmployeeServiceTest {
         verify(employeeRepo).deleteById(employee.getId());
     }
 
-    @Test
-    void updateEmployee() {
-        employeeService.updateEmployee(employee);
-        verify(employeeRepo).save(employee);
-    }
+//    @Test
+//    void updateEmployee() {
+//        employeeService.updateEmployee(employee);
+//        verify(employeeRepo).save(employee);
+//    }
 }

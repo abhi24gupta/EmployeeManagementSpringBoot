@@ -27,13 +27,13 @@ public class DepartmentController {
 	}
 
 	@GetMapping("/api/departments/{id}")    //  /api/departments/{id}
-	public Optional<Department> getDepartment(@PathVariable int id){
+	public Department getDepartment(@PathVariable int id){
 		return departmentService.getDepartment(id);
 	}
 
-	@PutMapping(" /api/departments")        //    /api/departments
-	public Department updateDepartment(@RequestBody Department department){
-		return departmentService.updateDepartment(department);
+	@PutMapping("/api/departments/{id}")        //    /api/departments
+	public Department updateDepartment(@RequestBody Department department,@PathVariable int id){
+		return departmentService.updateDepartment(department,id);
 	}
 
 	@DeleteMapping("/api/departments/{id}")

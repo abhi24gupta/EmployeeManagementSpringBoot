@@ -34,9 +34,9 @@ public class SalaryController {
         return salaryService.deleteSalaryById(id);
     }
 
-    @PutMapping("/api/salary")
-    public Salary updateSalary(@RequestBody Salary salary){
-        return salaryService.updateSalary(salary);
+    @PutMapping("/api/salary/{id}")
+    public Salary updateSalary(@RequestBody Salary salary, @PathVariable int id){
+        return salaryService.updateSalary(salary, id);
 
 
 

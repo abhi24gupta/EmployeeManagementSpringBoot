@@ -33,9 +33,9 @@ public class LeaveController {
         return leaveService.deleteLeaves(id);
     }
 
-    @PutMapping("/api/leaves")
-    public Leave updateLeaves(@RequestBody Leave leave){
-        return leaveService.updateLeaves(leave);
+    @PutMapping("/api/leaves/{id}")
+    public Leave updateLeaves(@RequestBody Leave leave ,@PathVariable int id){
+        return leaveService.updateLeaves(leave,id);
     }
 
 }

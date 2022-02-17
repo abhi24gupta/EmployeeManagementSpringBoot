@@ -1,5 +1,6 @@
 package employ.service;
 
+import employ.exception.ResouceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -31,19 +32,19 @@ public class DepartmentService {
 		return departmentRepository.findAll();
     }
 
-
 	@Cacheable(key="#id", value="depkey")
-	public Optional<Department> getDepartment(int id) {
-		return departmentRepository.findById(id);
+	public Department getDepartment(int id) {
+		return departmentRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No department found with given id :" + id + " to search"));
 	}
 
 
 	@CachePut(key="#id", value="depkey")
-	public Department updateDepartment(Department department) {
-//		Department existingDepartment = departmentRepository.findById(department.getDepId()).orElse(null);
-//		existingDepartment.setDepId(department.getDepId());
-//		existingDepartment.setDepName(department.getDepName());
-		return departmentRepository.save(department);
+	public Department updateDepartment(Department department, int id) {
+		Department existingDepartment = departmentRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No department Found with given id"+ id ));
+		existingDepartment.setDepName(department.getDepName());
+		existingDepartment.setDepDesc(department.getDepDesc());
+		existingDepartment.setDepLocation(department.getDepLocation());
+		return departmentRepository.save(existingDepartment);
 	}
 
 	public DepartmentService(DepartmentRepository departmentRepository) {

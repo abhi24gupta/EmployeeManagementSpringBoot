@@ -1,6 +1,7 @@
 package employ.service;
 
 import employ.entity.Salary;
+import employ.exception.ResouceNotFoundException;
 import employ.repository.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class SalaryService {
     }
 
     public Salary findSalaryById(int id) {
-        return salaryRepository.findById(id).get();
+        return salaryRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No Data found"));
     }
 
     public String deleteSalaryById(int id) {
@@ -43,8 +44,8 @@ public class SalaryService {
         }
     }
 
-    public Salary updateSalary(Salary salary) {
-        Salary existingSalary = salaryRepository.findById(salary.getSalary_id()).orElse(null);
+    public Salary updateSalary(Salary salary, int id) {
+        Salary existingSalary = salaryRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No Salary found in DB"));
         existingSalary.setAmount(salary.getAmount());
         existingSalary.setBonus(salary.getBonus());
         existingSalary.setDeduction(salary.getDeduction());

@@ -2,6 +2,7 @@ package employ.service;
 
 import employ.entity.Employee;
 import employ.entity.Leave;
+import employ.exception.ResouceNotFoundException;
 import employ.repository.LeaveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class LeaveService {
     }
 
     public Leave getLeaveById(int id){
-            return leaveRepository.findById(id).get();
+            return leaveRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No leave found to Display. Leave Id : " + id));
     }
 
     public String deleteLeaves(int id) {
@@ -42,8 +43,8 @@ public class LeaveService {
         this.leaveRepository = leaveRepository;
     }
 
-    public Leave updateLeaves(Leave leave) {
-        Leave existingLeave = leaveRepository.findById(leave.getLeaveId()).orElse(null);
+    public Leave updateLeaves(Leave leave, int id) {
+        Leave existingLeave = leaveRepository.findById(id).orElseThrow(() -> new ResouceNotFoundException("No Such leave present by id "+ id + " Try Again!!"));
         existingLeave.setDate(leave.getDate());
         existingLeave.setReason(leave.getReason());
         existingLeave.setEmployee(leave.getEmployee());

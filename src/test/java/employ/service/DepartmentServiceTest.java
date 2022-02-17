@@ -47,9 +47,9 @@ class DepartmentServiceTest {
         verify(departmentRepo).findById(department.getDepId());
     }
 
-    @Test
-    void updateDepartment() {
-        departmentService.updateDepartment(department);
-        verify(departmentRepo).save(department);
-    }
+//    @Test
+//    void updateDepartment() {
+//        departmentService.updateDepartment(department);
+//        verify(departmentRepo).save(department);
+//    }
 }
